@@ -1,31 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const GamesList = ({ games }) => {
+const GamesList = ({ gamesList, filteredGames }) => {
+  const games = filteredGames.length > 0 ? filteredGames : gamesList
   const listGames = games ? (
-    games.map(game => (
-      <div key={game.Rank } className="card border-dark mb-3" >
+    games.map((game) => (
+      <div key={game.Rank} className="card border-dark mb-3">
         <div className="card-header">Rank : {game.Rank}</div>
         <div className="card-body text-dark">
           <h5 className="card-title">{game.Name}</h5>
         </div>
       </div>
     ))
-  ): (
-    <div className='loading'>
+  ) : (
+    <div className="loading">
       <h4>Loading Games...</h4>
     </div>
   );
-  return(
-    <div className='game-list'>
-      {listGames}
-    </div>
-  );
+  return <div className="game-list">{listGames}</div>;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    games: state.games
-  }
-}
+    gamesList: state.games,
+    filteredGames: state.filteredGames
+  };
+};
 export default connect(mapStateToProps)(GamesList);

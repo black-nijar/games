@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { fetchGames } from "./actions/actions";
+import { fetchGames } from "../actions/actions";
 
 class Home extends Component {
   componentDidMount() {
