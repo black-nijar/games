@@ -1,16 +1,19 @@
 import React from 'react'
 import './App.css'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './Components/Home'
-import GamesList from './Components/GamesList'
-import SearchGame from './Components/SearchGame'
+import GameDetail from './Components/GameDetail'
 
 const App = () => {
   return (
-    <div className='container'>
-      <Home/>
-      <SearchGame/>
-      <GamesList/>
-    </div>
+   <BrowserRouter>
+     <div>  
+       <Switch>
+         <Route exact path='/' component={Home}/>
+         <Route path='/game/:id' component={GameDetail}/>
+       </Switch>
+     </div>
+   </BrowserRouter>
   )
 }
 
