@@ -1,8 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const GamesList = ({ result }) => {
-  const listGames = result ? (
-    result.data.map(game => (
+const GamesList = ({ games }) => {
+  const listGames = games ? (
+    games.map(game => (
       <div key={game.Rank } className="card border-dark mb-3" >
         <div className="card-header">Rank : {game.Rank}</div>
         <div className="card-body text-dark">
@@ -12,7 +13,7 @@ const GamesList = ({ result }) => {
     ))
   ): (
     <div className='loading'>
-      <h4>Loading Games</h4>
+      <h4>Loading Games...</h4>
     </div>
   );
   return(
@@ -22,4 +23,9 @@ const GamesList = ({ result }) => {
   );
 };
 
-export default React.memo(GamesList);
+const mapStateToProps = state => {
+  return {
+    games: state.games
+  }
+}
+export default connect(mapStateToProps)(GamesList);
